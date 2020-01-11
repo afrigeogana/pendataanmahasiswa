@@ -15,11 +15,14 @@ class Kelas extends CI_Controller
     {
         //$data["datakelas"] = $this->db->get("masterkelas")->result();
         $data ['datakelas']=$this->m_kelas->getkelas()->result ();
-        $this->load->view("kelas/datakelas", $data);
+        // $this->load->view("kelas/datakelas", $data);
+        $data ["content"]="kelas/datakelas";
+        $this->load->view("layouts/index", $data);
     }
     public function tambah()
     {
-        $this->load->view("kelas/tambahkelas");
+        $data ["content"]="kelas/tambahkelas";
+        $this->load->view("layouts/index", $data);
     }
     public function simpantambah()
     {
@@ -38,7 +41,8 @@ class Kelas extends CI_Controller
     {
         $where['id'] = $this->uri->segment(3);
         $data["datakelas"] = $this->m_kelas->getsinglekelas($where)->row();
-        $this->load->view("kelas/editkelas", $data);
+        $data["content"]="kelas/editkelas";
+        $this->load->view("layouts/index", $data);
     }
     public function simpanedit()
     {
